@@ -1,0 +1,9 @@
+.text-count{
+    font-size: 15px;
+    margin: 20px 0;
+}
+
+.count-digit {
+    font-size: 18px;
+    font-weight: bold;
+}
