@@ -155,7 +155,7 @@ class Active_Phone_Menu_Table_Create extends WP_List_Table
 		global $wpdb;
 		$dateFrom_string = $this -> getDateFromPost()['dateFrom_string'];
 		$dateTo_string = $this -> getDateFromPost()['dateTo_string'];
-		$data = $wpdb->get_results("SELECT vacancy_name, employer_name, count(vacancy_id) as click_count FROM wp_activephone WHERE date>=$dateFrom_string AND date<$dateTo_string GROUP BY vacancy_id");
+		//$data = $wpdb->get_results("SELECT vacancy_name, employer_name, count(vacancy_id) as click_count FROM wp_activephone WHERE date>=$dateFrom_string AND date<$dateTo_string GROUP BY vacancy_id");
 		$array = [];
 		foreach ($data as $value) {
 			array_push($array, (array)$value);
