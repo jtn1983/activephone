@@ -57,7 +57,7 @@ function getEmployerNameById ($id){
 }
 
 function getVacancyAuthorId($id){
-    return $authorID = get_post_field('jobsearch_field_job_posted_by', $id);
+    return get_post_field('jobsearch_field_job_posted_by', $id);
 }
 
 function getVacancyNameById ($id){
@@ -67,7 +67,7 @@ function getVacancyNameById ($id){
 function getAuthorPhone ($id) {
     $authorID = get_post_field('jobsearch_field_job_posted_by', $id);
     $employerID = get_post($authorID)->post_author;
-    $phone = get_usermeta( $employerID, 'jobsearch_field_user_phone', true );
+    $phone = phone_format(get_usermeta( $employerID, 'jobsearch_field_user_phone', true ));
     return $phone;
 }
 
