@@ -9,7 +9,10 @@ class Init_Active_Phone_Menu_Table_Create
 
 	public function createMenu()
 	{
-		add_menu_page('Статистика кликов по активной кнопке', 'Статистика кликов по активной кнопке', 'manage_options', 'active_phone_statistic', array($this, 'createTable'), 'dashicons-code-standards', '20.5');
+        add_menu_page( 'Статистика Работа молодым', 'Статистика Работа молодым', 'manage_options', 'statistic_work', '', 'dashicons-code-standards', '20.5');
+
+
+        add_submenu_page( 'statistic_work', 'Статистика кликов по активной кнопке', 'Статистика кликов по активной кнопке', 'manage_options', 'active_phone_statistic', array($this, 'createTable'));
 	}
 
 	public function createTable()
