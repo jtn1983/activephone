@@ -50,7 +50,9 @@ function phone_format($phone)
 }
 
 function getEmployerNameById ($id){
-    return get_userdata($id) -> display_name;
+    $authorID = get_post_field('jobsearch_field_job_posted_by', $id);
+    $employerID = get_post($authorID)->post_author;
+    
 }
 
 function getVacancyNameById ($id){
@@ -61,7 +63,7 @@ function get_phone_number_ajax(){
     global $wpdb;
     $postId = $_POST['postId'];
     $userSession = $_POST['cookie'];
-    $authorID = get_post_field('post_author', $postId);
+    
     $phone = phone_format(get_user_meta($authorID, 'jobsearch_field_user_phone', true));
     $userId = is_user_logged_in() ? wp_get_current_user()->ID : 0;
     if ($phone != ''){
