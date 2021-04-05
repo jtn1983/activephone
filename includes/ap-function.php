@@ -52,26 +52,37 @@ function phone_format($phone)
 function getEmployerNameById ($id){
     $authorID = get_post_field('jobsearch_field_job_posted_by', $id);
     $employerID = get_post($authorID)->post_author;
-    
+    $employerName = get_userdata( $employerID )->display_name;
+    return $employerName;
+}
+
+function getVacancyAuthorId($id){
+    return $authorID = get_post_field('jobsearch_field_job_posted_by', $id);
 }
 
 function getVacancyNameById ($id){
     return get_post_field( 'post_title', $id);
 }
 
+function getAuthorPhone ($id) {
+    $authorID = get_post_field('jobsearch_field_job_posted_by', $id);
+    $employerID = get_post($authorID)->post_author;
+    $phone = get_usermeta( $employerID, 'jobsearch_field_user_phone', true );
+    return $phone;
+}
+
 function get_phone_number_ajax(){
     global $wpdb;
     $postId = $_POST['postId'];
     $userSession = $_POST['cookie'];
-    
-    $phone = phone_format(get_user_meta($authorID, 'jobsearch_field_user_phone', true));
+    $phone = getAuthorPhone($postId);
     $userId = is_user_logged_in() ? wp_get_current_user()->ID : 0;
     if ($phone != ''){
         $wpdb -> insert (
             'wp_activephone',
             array(
-                'employer_id' => $authorID,
-                'employer_name' => getEmployerNameById($authorID),
+                'employer_id' => getVacancyAuthorId($postId),
+                'employer_name' => getEmployerNameById($postId),
                 'vacancy_id' => $postId,
                 'vacancy_name' => getVacancyNameById($postId),
                 'user_id' => $userId,
