@@ -7,6 +7,6 @@ function activePhone()
     if (showPhoneNumber()){
         echo '<a href="tel:'.getPhoneNumber().'" class="activephone-btn">'.getPhoneNumber().'</a>';
     } else {
-        echo '<a href="javascript:void(0);" class="activephone-btn activephone-open">Телефон работодателя</a>';
+        echo '<a href="javascript:void(0);" class="activephone-btn has-spinner">Телефон работодателя</a>';
     }    
 }
