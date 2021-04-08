@@ -1,8 +1,8 @@
 <?php 
 function getPhoneNumber(){
     global $post;
-    $authorID = $post -> post_author;
-    $phone = phone_format(get_user_meta( $authorID, 'jobsearch_field_user_phone', true));
+    $vacancyID = $post -> ID;
+    $phone = phone_format(get_post_meta($vacancyID, 'vacancy-phone', true));
     return $phone;
 }
 
@@ -65,9 +65,7 @@ function getVacancyNameById ($id){
 }
 
 function getAuthorPhone ($id) {
-    $authorID = get_post_field('jobsearch_field_job_posted_by', $id);
-    $employerID = get_post($authorID)->post_author;
-    $phone = phone_format(get_usermeta( $employerID, 'jobsearch_field_user_phone', true ));
+    $phone = phone_format(get_post_meta($id, 'vacancy-phone', true));
     return $phone;
 }
 

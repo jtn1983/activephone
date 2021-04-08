@@ -32,7 +32,6 @@
       }
     })
   });
-
 })(jQuery);
 
 
@@ -49,10 +48,16 @@
       if (action == 'stop') {
           $(self).html($(self).attr('data-btn-text'));
           $('.has-spinner').removeAttr("disabled");
-          $(self).removeClass('active has-spinner');
-          
+          $(self).removeClass('active has-spinner');          
       }
   }
+})(jQuery);
+
+// click to activephone button without candidate registration and call modal from footer
+(function ($) {
+  $(document).on("click", ".actiphone-no-candidate", function () {
+    jobsearch_modal_popup_open('JobSearchActivePhoneJobWarning');
+  })
 })(jQuery);
 
 //Get session from cookie

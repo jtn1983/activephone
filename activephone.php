@@ -47,7 +47,29 @@ add_action('wp_ajax_nopriv_get_phone_number_ajax', 'get_phone_number_ajax');
 
 
 // Table in admin panel
-
 if (is_admin() == TRUE) {
 	new Init_Active_Phone_Menu_Table_Create();
+}
+
+//add modal to footer
+add_action('wp_footer', 'jobsearch_activephone_candidate_role_warning');
+
+function jobsearch_activephone_candidate_role_warning()
+{ ?>
+    <div class="jobsearch-modal fade" id="JobSearchActivePhoneJobWarning">
+        <div class="modal-inner-area">&nbsp</div>
+        <div class="modal-content-area">
+            <div class="modal-box-area">
+                <span class="modal-close"><i class="fa fa-times"></i></span>
+                <div class="jobsearch-send-message-form">
+                    <div class="send-message-warning">
+                        <span>Необходима учетная запись кандидата, чтобы посмотреть номер.</span>
+                        <span>Нажмите <a href="<?php echo wp_logout_url(get_permalink()); ?>">здесь</a> для выхода</span>
+                        <span>и попробуйте снова</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php
 }
